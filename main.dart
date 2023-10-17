@@ -23,33 +23,77 @@ class StaticBooks {
 }
 
 class Succinctly extends StatelessWidget {
-  final String book;
-  final String title;
-
-  Succinctly({
-    required this.book,
-    required this.title,
-  });
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(StaticBooks.cdn + StaticBooks.path + book),
-            fit: BoxFit.scaleDown,
+    return DefaultTabController(
+      length: 5,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Succinctly Books'),
+          bottom: TabBar(
+            tabs: <Widget>[
+              Tab(icon: Icon(Icons.book), text: 'VSM'),
+              Tab(icon: Icon(Icons.book_online), text: 'AT'),
+              Tab(icon: Icon(Icons.book_online_outlined), text: 'AZ'),
+              Tab(icon: Icon(Icons.book_online_rounded), text: 'ASP'),
+              Tab(icon: Icon(Icons.book_online_sharp), text: 'AD'),
+            ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.book_online),
-        onPressed: () {
-          print('Awesome book!');
-        },
+        body: TabBarView(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(StaticBooks.cdn +
+                      StaticBooks.path +
+                      StaticBooks.covers[0]),
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(StaticBooks.cdn +
+                      StaticBooks.path +
+                      StaticBooks.covers[1]),
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(StaticBooks.cdn +
+                      StaticBooks.path +
+                      StaticBooks.covers[2]),
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(StaticBooks.cdn +
+                      StaticBooks.path +
+                      StaticBooks.covers[3]),
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(StaticBooks.cdn +
+                      StaticBooks.path +
+                      StaticBooks.covers[4]),
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -60,18 +104,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Succinctly(
-        book: StaticBooks.covers[0],
-        title: StaticBooks.titles[0],
-      ),
+      home: Succinctly(),
       theme: ThemeData(
         primaryColor: Colors.indigo,
         hintColor: Colors.amber,
         textTheme: TextTheme(
-          bodyText2: TextStyle(
-            fontSize: 26,
-            fontStyle: FontStyle.italic,
-          ),
+          bodyText2: TextStyle(fontSize: 26, fontStyle: FontStyle.italic),
         ),
         brightness: Brightness.dark,
       ),
